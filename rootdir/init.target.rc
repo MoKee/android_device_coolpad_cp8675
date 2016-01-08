@@ -1,0 +1,156 @@
+# Copyright (c) 2009-2012, 2014, The Linux Foundation. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of The Linux Foundation nor
+#       the names of its contributors may be used to endorse or promote
+#       products derived from this software without specific prior written
+#       permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+on boot
+    # change file owner for factory test
+    chown system system /sys/devices/virtual/touchscreen/touchscreen_dev/firmware_version
+    chown system system /sys/devices/virtual/touchscreen/touchscreen_dev/firmware_update
+    chown system system /sys/devices/virtual/touchscreen/touchscreen_dev/calibrate
+
+# yulong begin,add
+# CTS touchscreen items, wzh,2013-03-25
+    chown system system /sys/devices/virtual/touchscreen/touchscreen_dev/firmware_update
+    chown system system /sys/devices/virtual/touchscreen/touchscreen_dev/calibrate
+    chown system system /sys/devices/virtual/touchscreen/touchscreen_dev/mode
+    chown system system /sys/devices/virtual/touchscreen/touchscreen_dev/oreitation
+    chown system system /sys/devices/virtual/touchscreen/touchscreen_dev/regs
+    chown system system /sys/devices/virtual/touchscreen/touchscreen_dev/get_rawdata
+    chown system system /sys/devices/virtual/touchscreen/touchscreen_dev/debug
+    chown system system /sys/devices/virtual/touchscreen/touchscreen_dev/reset
+# yulong end
+
+# yulong begin add
+# add for hall sensor init , zdd, 20150306
+    chown system system /sys/class/switch/hall/name
+    chown system system /sys/class/switch/hall/state
+    chown system system /sys/class/switch/hall/enable
+#yulong end 
+
+    # Notification LED
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/red/led_time
+    chown system system /sys/class/leds/green/led_time
+    chown system system /sys/class/leds/blue/led_time
+
+    # Touchscreen
+    chown root system /sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl
+    chmod 0660 /sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl
+
+    chown root system /sys/devices/soc.0/78b9000.i2c/i2c-5/5-005d/keypad_enable
+    chmod 0660 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-005d/keypad_enable
+    #change sensors permit
+    chown system system /dev/yl_alsprox_sensor
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/accel_delay
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/accel_enable
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/calibration
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/capabilities
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/debug
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/device_delay
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/event3
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/gyro_delay
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/gyro_enable
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/id
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/max
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/min
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/modalias
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/name
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/phys
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/poll
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/power
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/properties
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/uevent
+    chown system system sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/uniq
+    chown system system sys/class/sensors_compass/compass/data
+    chown system system sys/class/sensors_compass/compass/enable
+    chown system system sys/class/sensors_compass/compass/handle
+    chown system system sys/class/sensors_compass/compass/hard_offset
+    chown system system sys/class/sensors_compass/compass/max_range
+    chown system system sys/class/sensors_compass/compass/min_delay
+    chown system system sys/class/sensors_compass/compass/name
+    chown system system sys/class/sensors_compass/compass/poll_delay
+    chown system system sys/class/sensors_compass/compass/position
+    chown system system sys/class/sensors_compass/compass/power
+    chown system system sys/class/sensors_compass/compass/resolution
+    chown system system sys/class/sensors_compass/compass/self_test
+    chown system system sys/class/sensors_compass/compass/self_test_noise
+    chown system system sys/class/sensors_compass/compass/sensor_power
+    chown system system sys/class/sensors_compass/compass/type
+    chown system system sys/class/sensors_compass/compass/uevent
+    chown system system sys/class/sensors_compass/compass/vendor
+    chown system system sys/class/sensors_compass/compass/version
+    chown system system data/system/yas_lib.cfg
+    chown system system data/system/yas_set.cfg
+    
+    chmod 0740 /dev/yl_alsprox_sensor
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/accel_delay
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/accel_enable
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/calibration
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/capabilities
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/debug
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/device_delay
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/event3
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/gyro_delay
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/gyro_enable
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/id
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/max
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/min
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/modalias
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/name
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/phys
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/poll
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/power
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/properties
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/uevent
+    chmod 0740 sys/devices/soc.0/78b6000.i2c/i2c-0/0-0068/input/input3/uniq
+    chmod 0740 sys/class/sensors_compass/compass/data
+    chmod 0740 sys/class/sensors_compass/compass/enable
+    chmod 0740 sys/class/sensors_compass/compass/handle
+    chmod 0740 sys/class/sensors_compass/compass/hard_offset
+    chmod 0740 sys/class/sensors_compass/compass/max_range
+    chmod 0740 sys/class/sensors_compass/compass/min_delay
+    chmod 0740 sys/class/sensors_compass/compass/name
+    chmod 0740 sys/class/sensors_compass/compass/poll_delay
+    chmod 0740 sys/class/sensors_compass/compass/position
+    chmod 0740 sys/class/sensors_compass/compass/power
+    chmod 0740 sys/class/sensors_compass/compass/resolution
+    chmod 0740 sys/class/sensors_compass/compass/self_test
+    chmod 0740 sys/class/sensors_compass/compass/self_test_noise
+    chmod 0740 sys/class/sensors_compass/compass/sensor_power
+    chmod 0740 sys/class/sensors_compass/compass/type
+    chmod 0740 sys/class/sensors_compass/compass/uevent
+    chmod 0740 sys/class/sensors_compass/compass/vendor
+    chmod 0740 sys/class/sensors_compass/compass/version
+    chmod 0740 data/system/yas_lib.cfg
+    chmod 0740 data/system/yas_set.cfg
+   
+# wbl add camera factory info
+   chmod 0666 /dev/camera0
+ 
+    #for change compass orientation array
+    write sys/class/sensors_compass/compass/position 5
