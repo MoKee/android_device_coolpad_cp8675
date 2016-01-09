@@ -46,7 +46,7 @@ ro.qc.sdk.izat.premium.enabled=0
 ro.qc.sdk.izat.service_mask=0x0
 
 # Media
-ro.sf.lcd_density=320
+ro.sf.lcd_density=300
 mm.enable.qcom_parser=3179041
 mm.enable.smoothstreaming=true
 mm.disable.sec_smoothstreaming=true
@@ -102,5 +102,4 @@ persist.radio.multisim.config=dsds
 ril.ecclist=000,08,100,101,102,110,112,118,119,120,122,911,999
 ro.com.android.mobiledata=false
 ro.config.always_show_roaming=true
-ro.telephony.default_network=22,1
-
+ro.telephony.default_network=9,1
