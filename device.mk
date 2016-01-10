@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2014 The CyanogenMod Project
+# Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -54,7 +54,6 @@ PRODUCT_BOOT_JARS += qcmediaplayer
 
 # etc
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/etc/apns-conf.xml:system/etc/apns-conf.xml \
     $(LOCAL_PATH)/etc/clatd.conf:system/etc/clatd.conf \
     $(LOCAL_PATH)/etc/init.crda.sh:system/etc/init.crda.sh \
     $(LOCAL_PATH)/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
@@ -148,7 +147,30 @@ PRODUCT_PACKAGES += \
 # Doze mode
 PRODUCT_PACKAGES += \
     PanyoujieDoze
-    
+
+# Connectivity Engine support (CNE)
+PRODUCT_PACKAGES += \
+    CNEService \
+    cneapiclient \
+    com.quicinc.cne
+
+# DPM
+PRODUCT_PACKAGES += \
+    com.qti.dpmframework \
+    dpmapi
+
+# IMS
+PRODUCT_PACKAGES += \
+    init.qti.ims.sh \
+    init.cne.rc \
+    ims \
+    imscmlibrary
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/ims/imscm.xml:system/etc/permissions/imscm.xml \
+    $(LOCAL_PATH)/configs/ims/ims.xml:system/etc/permissions/ims.xml \
+    $(LOCAL_PATH)/configs/ims/qti_permissions.xml:system/etc/permissions/qti_permissions.xml
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8916
@@ -199,7 +221,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/goodix.kl:system/usr/keylayout/goodix.kl \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/keylayout/qwerty.idc:system/usr/idc/qwerty.idc \
-    $(LOCAL_PATH)/keylayout/qwerty2.idc:system/usr/idc/qwerty2.idc \
+    $(LOCAL_PATH)/keylayout/qwerty2.idc:system/usr/idc/qwerty2.idc
 
 # Keystore
 PRODUCT_PACKAGES += \
@@ -232,23 +254,6 @@ PRODUCT_PACKAGES += \
 # Power HAL
 PRODUCT_PACKAGES += \
     power.msm8916
-
-# QC PROPRIETARY ( proprietary wifi display, if available)
-ifneq ($(QCPATH),)
-PRODUCT_BOOT_JARS += WfdCommon
-
-# Connectivity Engine support
-ifeq ($(BOARD_USES_QCNE),true)
-PRODUCT_PACKAGES += \
-    libcnefeatureconfig \
-    services-ext \
-    init.cne.rc
-
-PRODUCT_PROPERTY_OVERRIDES +=
-    persist.cne.feature=4
-
-endif
-endif
 
 # USB
 PRODUCT_PACKAGES += \
