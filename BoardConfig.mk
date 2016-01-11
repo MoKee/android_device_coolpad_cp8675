@@ -140,9 +140,6 @@ BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 
-# Disable Jack & Jill compilation
-ANDROID_COMPILE_WITH_JACK := false
-
 # Audio
 AUDIO_FEATURE_DEEP_BUFFER_RINGTONE := true
 AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true

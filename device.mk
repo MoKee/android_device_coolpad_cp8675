@@ -60,6 +60,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
     $(LOCAL_PATH)/etc/lowi.conf:system/etc/lowi.conf \
     $(LOCAL_PATH)/etc/sec_config:system/etc/sec_config \
+    $(LOCAL_PATH)/etc/apns-conf.xml:system/etc/apns-conf.xml \
     $(LOCAL_PATH)/etc/spn-conf.xml:system/etc/spn-conf.xml
 
 # firmware
