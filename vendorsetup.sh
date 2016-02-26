@@ -1,0 +1,2 @@
+add_lunch_combo mk_cp8675-userdebug
+add_lunch_combo mk_cp8675-eng

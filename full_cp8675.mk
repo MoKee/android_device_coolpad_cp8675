@@ -24,6 +24,5 @@ $(call inherit-product, device/coolpad/cp8675/device.mk)
 PRODUCT_DEVICE := cp8675
 PRODUCT_NAME := full_cp8675
 PRODUCT_BRAND := coolpad
-FLYME_ROMER := Flour_Mo
 PRODUCT_MODEL := coolpad 8675-A
 PRODUCT_MANUFACTURER := coolpad

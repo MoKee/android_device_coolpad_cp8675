@@ -37,34 +37,6 @@
 #define MAX_AF_ITERATIONS 3
 #define MAX_NUMBER_OF_STEPS 47
 
-#ifdef CONFIG_MACH_YULONG
-#define SENSOR_ID_OV13850 0xD850
-#define MODULE_TECH_OV13850 (SENSOR_ID_OV13850 << 16 | 0x06)
-#define MODULE_SUNNY_OV13850 (SENSOR_ID_OV13850 << 16 | 0x01)
-#define MODULE_FOXCONN_OV13850 (SENSOR_ID_OV13850 << 16 | 0x11)
-
-#define SENSOR_ID_8865 0x8865
-#define MODULE_SUNNY_8865 (SENSOR_ID_8865 << 16 | 0x01)
-#define MODULE_OFILM_8865 (SENSOR_ID_8865 << 16 | 0x07)
-#define MODULE_FOXCONN_8865 (SENSOR_ID_8865 << 16 | 0x11)
-#define MODULE_TECH_8865 (SENSOR_ID_8865 << 16 | 0x06)
-
-#define SENSOR_ID_OV5648 0x5648
-#define MODULE_SUNNY_OV5648 (SENSOR_ID_OV5648 << 16 | 0x01)
-#define MODULE_OFILM_OV5648 (SENSOR_ID_OV5648 << 16 | 0x07)
-#define MODULE_TECH_OV5648 (SENSOR_ID_OV5648 << 16 | 0x06)
-
-#define SENSOR_ID_OV5693 0x5690
-#define MODULE_TECH_OV5693 (SENSOR_ID_OV5693 << 16 | 0x06)
-
-#define SENSOR_ID_IMX135 0x0135
-#define MODULE_SUNNY_IMX135 (SENSOR_ID_IMX135 << 16 | 0x01)
-#define MODULE_FOXCONN_IMX135 (SENSOR_ID_IMX135 << 16 | 0x02)
-
-
-#define SENSOR_ID_IMX219 0x0219
-#endif
-
 #define MAX_LED_TRIGGERS 3
 
 enum flash_type {
@@ -82,6 +54,14 @@ enum msm_sensor_resolution_t {
 	MSM_SENSOR_RES_5,
 	MSM_SENSOR_RES_6,
 	MSM_SENSOR_RES_7,
+	MSM_SENSOR_RES_8, // zte-fuyipeng add the res
+	MSM_SENSOR_RES_9,
+	MSM_SENSOR_RES_10,
+	MSM_SENSOR_RES_11,
+	MSM_SENSOR_RES_12,
+	MSM_SENSOR_RES_13,
+	MSM_SENSOR_RES_14,
+	MSM_SENSOR_RES_15,
 	MSM_SENSOR_INVALID_RES,
 };
 
@@ -342,6 +322,7 @@ struct msm_camera_sensor_slave_info32 {
 	uint8_t  is_init_params_valid;
 	struct msm_sensor_init_params sensor_init_params;
 	uint8_t is_flash_supported;
+	enum msm_sensor_output_format_t output_format;
 };
 
 struct msm_camera_csid_lut_params32 {
@@ -428,9 +409,9 @@ enum msm_sensor_cfg_type_t {
 	CFG_SET_AUTOFOCUS,
 	CFG_CANCEL_AUTOFOCUS,
 	CFG_SET_STREAM_TYPE,
-#ifdef CONFIG_MACH_YULONG
-	CFG_UPDATE_OTP,
-#endif
+	 // ZTEMT: peijun add for setBacklight -----start
+	CFG_SET_ZTE_BACKLIGHT,
+	// ZTEMT: peijun add for setBacklight -----end
 };
 
 enum msm_actuator_cfg_type_t {
@@ -442,6 +423,12 @@ enum msm_actuator_cfg_type_t {
 	CFG_ACTUATOR_POWERDOWN,
 	CFG_ACTUATOR_POWERUP,
 	CFG_ACTUATOR_INIT,
+	// ZTEMT: fuyipeng add for manual AF -----start
+	CFG_SET_ACTUATOR_NAME,
+    // ZTEMT: fuyipeng add for manual AF -----end
+    /*ZTEMT:jixd add af infinity calibration -----start*/
+    CFG_SET_INFINITY_POS,
+   /*ZTEMT:jixd add af infinity calibration -----end*/  
 };
 
 enum msm_ois_cfg_type_t {
@@ -566,12 +553,16 @@ struct msm_actuator_cfg_data {
 	int cfgtype;
 	uint8_t is_af_supported;
 	union {
-		struct msm_actuator_move_params_t move;
-		struct msm_actuator_set_info_t set_info;
-		struct msm_actuator_get_info_t get_info;
-		struct msm_actuator_set_position_t setpos;
-		enum af_camera_name cam_name;
-	} cfg;
+        struct msm_actuator_move_params_t move;
+        struct msm_actuator_set_info_t set_info;
+        struct msm_actuator_get_info_t get_info;
+        struct msm_actuator_set_position_t setpos;
+        enum af_camera_name cam_name;
+        // ZTEMT: fuyipeng add for manual AF -----start
+        char *act_name;
+        // ZTEMT: fuyipeng add for manual AF -----end
+        int infinity_pos;//ZTEMT:jixd add af infinity calibration 
+    } cfg;
 };
 
 enum msm_camera_led_config_t {
@@ -722,6 +713,10 @@ struct msm_actuator_cfg_data32 {
 		struct msm_actuator_get_info_t get_info;
 		struct msm_actuator_set_position_t setpos;
 		enum af_camera_name cam_name;
+		// ZTEMT: fuyipeng add for manual AF -----start
+             char *act_name;
+             // ZTEMT: fuyipeng add for manual AF -----end
+        int infinity_pos;//ZTEMT:jixd add af infinity calibration 
 	} cfg;
 };
 

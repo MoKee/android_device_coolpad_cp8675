@@ -149,29 +149,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     PanyoujieDoze
 
-# Connectivity Engine support (CNE)
-PRODUCT_PACKAGES += \
-    CNEService \
-    cneapiclient \
-    com.quicinc.cne
-
-# DPM
-PRODUCT_PACKAGES += \
-    com.qti.dpmframework \
-    dpmapi
-
-# IMS
-PRODUCT_PACKAGES += \
-    init.qti.ims.sh \
-    init.cne.rc \
-    ims \
-    imscmlibrary
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/ims/imscm.xml:system/etc/permissions/imscm.xml \
-    $(LOCAL_PATH)/configs/ims/ims.xml:system/etc/permissions/ims.xml \
-    $(LOCAL_PATH)/configs/ims/qti_permissions.xml:system/etc/permissions/qti_permissions.xml
-
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8916
@@ -195,6 +172,10 @@ PRODUCT_PACKAGES += \
     e2fsck \
     make_ext4fs \
     setup_fs
+
+# camera
+PRODUCT_PACKAGES += \
+    Snap
 
 # GPS
 PRODUCT_PACKAGES += \
